@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twitter検索</title>
+  <style>
+    body {
+      font-size: 24pt;
+    }
+  </style>
+</head>
+<body>
+<div>Twitter 検索:</div>
+ワード: <input id="text" type="text" size="20"><br>
+リツイート: <input id="retweets" type="text" size="10" value="3"><br>
+いいね: <input id="faves" type="text" size="10" value="3"><br>
+動画: <input id="video" type="checkbox" value="1"><br>
+半年以内: <input id="since" type="checkbox" value="2"><br>
+<input id="search" type="button" value="検索"><br>
+<script>
+"use strict";
+document.querySelector('#text').addEventListener('keypress', function(e) {
+  if (e.keyCode == 13) {
+    search();
+    return;
+  }
+});
+document.querySelector('#search').addEventListener('click', search);
+function search() {
+  let text = document.querySelector('#text').value;
+  let retweets = document.querySelector("#retweets").value;
+  if (retweets) {
+    retweets = " min_retweets:" + retweets;
+  } else {
+    retweets = "";
+  }
+  let faves = document.querySelector("#faves").value;
+  if (faves) {
+    faves = " min_faves:" + faves;
+  } else {
+    faves = "";
+  }
+  let video = document.querySelector("#video");
+  if (video.checked) {
+    video = " filter:native_video";
+  } else {
+    video = "";
+  }
+  let since = document.querySelector("#since");
+  if (since.checked) {
+    since = " since:" + getPreviousDay();
+  } else {
+    since = "";
+  }
+  let enc = encodeURIComponent(text + ' OR @i -@i lang:ja' + video + since + retweets + faves);
+  window.location = 'https://twitter.com/search?q=' + enc + '&src=typed_query&f=live';
+}
+function getPreviousDay() {
+  let today = new Date();
+  today.setDate(today.getDate() - 180);
+  let year = today.getFullYear();
+  let month = today.getMonth() + 1;
+  let day = today.getDate();
+  return year + "-" + month + "-" + day;
+}
+</script>
+</body>
+</html>
