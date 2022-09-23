@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>はてな</title>
+</head>
+<body>
+<h1>はてな匿名ダイアリー キーワード</h1>
+<div>
+  <span>はてな匿名ダイアリー:</span>
+  <input id="masuda" type="text" size="10">
+  <input id="masuda_search" type="button" value="検索">
+</div>
+<div id="keyword"></div>
+<div>
+  <span>はてなブログ検索:</span>
+  <input id="blog" type="text" size="10">
+  <input id="blog_search" type="button" value="検索">
+</div>
+<div>
+  <span>はてなブックマーク検索</span>
+  <input id="hatebu" type="text" size="10">
+  <input id="hatebu_search" type="button" value="検索">
+</div>
+<script>
+"use strict";
+function isEnter(e) {
+  return e.keyCode == 13;
+}
+function masuda_search() {
+  let text = document.querySelector('#masuda').value;
+  window.location = 'http://anond.hatelabo.jp/keyword/' + encodeURIComponent(text);
+}
+function blog_search() {
+  let text = document.querySelector('#blog').value;
+  text = text + " site:hatenablog.com OR site:hatenablog.jp OR site:hateblo.jp OR site:hatenadiary.com OR site:hatenadiary.jp";
+  window.location = 'http://www.google.co.jp/search?q=' + encodeURIComponent(text);
+}
+function hatebu_search() {
+  let text = document.querySelector("#hatebu").value;
+  window.location = 'https://b.hatena.ne.jp/q/' + encodeURIComponent(text);
+}
+document.querySelector('#masuda_search').addEventListener('click', masuda_search);
+document.querySelector('#masuda').addEventListener('keypress', function(e) {
+  if (isEnter(e)) {
+    masuda_search();
+    return;
+  }
+});
+document.querySelector('#blog_search').addEventListener('click', blog_search);
+document.querySelector('#blog').addEventListener('keypress', function(e) {
+  if (isEnter(e)) {
+    blog_search();
+    return;
+  }
+});
+document.querySelector('#hatebu_search').addEventListener('click', hatebu_search);
+document.querySelector('#hatebu').addEventListener('keypress', function(e) {
+  if (isEnter(e)) {
+    hatebu_search();
+    return;
+  }
+});
+</script>
+</body>
+</html>
