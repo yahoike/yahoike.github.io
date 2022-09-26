@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube 最新検索</title>
+</head>
+<body>
+<h1>YouTube 最新検索</h1>
+<div>
+  <input id="yt" type="text" size="10">
+  <input id="yt_search" type="button" value="検索">
+</div>
+<script>
+"use strict";
+function isEnter(e) {
+  return e.keyCode == 13;
+}
+function yt_search() {
+  let text = document.querySelector('#yt').value;
+  window.location = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(text) + '&sp=CAISAhABQhESD-S6lOWNgeW1kOmfv-WtkA%253D%253D';
+}
+document.querySelector('#yt_search').addEventListener('click', yt_search);
+document.querySelector('#yt').addEventListener('keypress', function(e) {
+  if (isEnter(e)) {
+    yt_search();
+    return;
+  }
+});
+</script>
+</body>
+</html>
