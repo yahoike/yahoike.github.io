@@ -40,7 +40,7 @@ function blog_search() {
 }
 function hatebu_search() {
   let text = document.querySelector("#hatebu").value;
-  window.location = 'https://b.hatena.ne.jp/q/' + encodeURIComponent(text);
+  window.location = 'https://b.hatena.ne.jp/q/' + encodeURIComponent(text) + '?sort=recent';
 }
 document.querySelector('#masuda_search').addEventListener('click', masuda_search);
 document.querySelector('#masuda').addEventListener('keypress', function(e) {
