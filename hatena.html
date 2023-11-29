@@ -36,7 +36,7 @@ function masuda_search() {
 function blog_search() {
   let text = document.querySelector('#blog').value;
   text = text + " site:hatenablog.com OR site:hatenablog.jp OR site:hateblo.jp OR site:hatenadiary.com OR site:hatenadiary.jp";
-  window.location = 'http://www.google.co.jp/search?q=' + encodeURIComponent(text);
+  window.location = 'https://duckduckgo.com/?q=' + encodeURIComponent(text);
 }
 function hatebu_search() {
   let text = document.querySelector("#hatebu").value;
