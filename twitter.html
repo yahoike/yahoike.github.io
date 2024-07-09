@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Twitter検索</title>
+  <title>X検索</title>
   <style>
     body {
       font-size: 24pt;
@@ -12,7 +12,7 @@
   </style>
 </head>
 <body>
-<div>Twitter 検索:</div>
+<div>X検索:</div>
 ワード: <input id="text" type="text" size="20"><br>
 リツイート: <input id="retweets" type="text" size="10" value="3"><br>
 いいね: <input id="faves" type="text" size="10" value="3"><br>
@@ -55,7 +55,7 @@ function search() {
     since = "";
   }
   let enc = encodeURIComponent(text + ' OR @i -@i lang:ja' + video + since + retweets + faves);
-  window.location = 'https://twitter.com/search?q=' + enc + '&src=typed_query&f=live';
+  window.location = 'https://x.com/search?q=' + enc + '&src=typed_query&f=live';
 }
 function getPreviousDay() {
   let today = new Date();
